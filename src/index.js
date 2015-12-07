@@ -14,6 +14,8 @@ function storeLayarUserId(request, response, next) {
 }
 
 const code = "COLMA";
+const domain = "rudyjahchan-c5-node.ngrok.io";
+const layer = "c5test2exampbqoi";
 
 function authenticate(request, response, next) {
   teams.forLayarUser(request.session.layarUserId)
@@ -85,7 +87,6 @@ export default function() {
     .post('/login', (request, response) => {
       teams.addLayarUser(request.session.layarUserId, request.body.room, request.body.move)
         .then((team) => {
-          console.log(team);
           const session = request.session;
           const authenticationURL = session.authenticationURL;
           if(team.lettersUnlocked == 0) {
@@ -114,15 +115,14 @@ export default function() {
         fullRefresh: true,
         errorCode: 0,
         errorString: "OK",
-        layer: "c5test2exampbqoi",
+        layer,
         deletedHotspots: [],
         hotspots:[],
         actions: [ {
           label: "Dashboard",
-          uri: `http:\/\/rudyjahchan-c5-node.ngrok.io?layarUserId=${layarUserId}`,
+          uri: `http:\/\/${domain}?layarUserId=${layarUserId}`,
           contentType: "text\/html",
           method: "GET",
-          closeBiw: true
         }],
       };
       teams.forLayarUser(layarUserId)
@@ -135,7 +135,7 @@ export default function() {
           if(distance < 25) {
             hotspots = [
               {
-                id: "outsideNorton",
+                id: `${location.code}OutsideNorton`,
                 anchor: {
                   geolocation: {
                     lat: location.geopoint.latitude,
@@ -158,14 +158,12 @@ export default function() {
                     angle: 0
                   }
                 },
-                showSmallBiw: false,
                 showBiwOnClick: false,
                 actions: [ {
                   label: "Tag",
-                  uri: `http:\/\/rudyjahchan-c5-node.ngrok.io\/tag?code=${location.code}&layarUserId=${layarUserId}`,
+                  uri: `http:\/\/${domain}\/tag?code=${location.code}&layarUserId=${layarUserId}`,
                   contentType: "text\/html",
                   method: "GET",
-                  closeBiw: true
                 }]
               }
             ];
@@ -207,14 +205,12 @@ export default function() {
             text: {
               title: "Emperor Norton",
             },
-            showSmallBiw: false,
             showBiwOnClick: false,
             actions: [ {
-              label: "Open Clue",
-              uri: `http:\/\/rudyjahchan-c5-node.ngrok.io?layarUserId=${layarUserId}`,
+              label: "Speak",
+              uri: `http:\/\/${domain}?layarUserId=${layarUserId}`,
               contentType: "text\/html",
               method: "GET",
-              closeBiw: true
             }]
           },
         ]
@@ -229,7 +225,7 @@ export default function() {
         if (lettersUnlocked > 3) {
           riddle = 'final';
         }
-        response.render(`riddles/${riddle}`, { team, letters: code.trim().split('') });
+        response.render(`riddles/${riddle}`, { team, letters: code.trim().split(''), layer });
       } else {
         response.redirect('/');
       }
