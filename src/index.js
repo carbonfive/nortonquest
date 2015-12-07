@@ -16,8 +16,7 @@ function storeLayarUserId(request, response, next) {
 const code = "COLMA";
 const domain = process.env.NORTONQUEST_DOMAIN;
 const layer = process.env.NORTONQUEST_LAYER;
-
-console.log("ENV", {domain, layer});
+const referenceImage = process.env.NORTONQUEST_REFERENCE_IMAGE;
 
 function authenticate(request, response, next) {
   teams.forLayarUser(request.session.layarUserId)
@@ -190,9 +189,7 @@ export default function() {
         hotspots: [
           {
             id: "internalNorton",
-            anchor: {
-              referenceImage: "summoningCircle"
-            },
+            anchor: { referenceImage },
             object: {
               url: "http://s3.amazonaws.com/rudyjahchan/Norton.png",
               contentType: "image/png",
