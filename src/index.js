@@ -14,7 +14,8 @@ function storeLayarUserId(request, response, next) {
 }
 
 const domain = process.env.NORTONQUEST_DOMAIN;
-const layer = process.env.NORTONQUEST_LAYER;
+const geoLayer = process.env.NORTONQUEST_GEO_LAYER;
+const visionLayer = process.env.NORTONQUEST_VISION_LAYER;
 const referenceImage = process.env.NORTONQUEST_REFERENCE_IMAGE;
 
 function authenticate(request, response, next) {
@@ -115,7 +116,7 @@ export default function() {
         fullRefresh: true,
         errorCode: 0,
         errorString: "OK",
-        layer,
+        layer: geoLayer,
         deletedHotspots: [],
         hotspots:[],
         actions: [ {
@@ -183,7 +184,7 @@ export default function() {
         fullRefresh: true,
         errorCode: 0,
         errorString: "OK",
-        layer: "exampleizgo",
+        layer: visionLayer,
         deletedHotspots: [],
         hotspots: [
           {
@@ -223,7 +224,7 @@ export default function() {
         if (lettersUnlocked > 3) {
           riddle = 'final';
         }
-        response.render(`riddles/${riddle}`, { team, letters: team.code.trim().split(''), layer });
+        response.render(`riddles/${riddle}`, { team, letters: team.code.trim().split(''), layer: geoLayer });
       } else {
         response.redirect('/');
       }
