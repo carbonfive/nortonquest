@@ -13,7 +13,6 @@ function storeLayarUserId(request, response, next) {
   next();
 }
 
-const code = "COLMA";
 const domain = process.env.NORTONQUEST_DOMAIN;
 const layer = process.env.NORTONQUEST_LAYER;
 const referenceImage = process.env.NORTONQUEST_REFERENCE_IMAGE;
@@ -224,7 +223,7 @@ export default function() {
         if (lettersUnlocked > 3) {
           riddle = 'final';
         }
-        response.render(`riddles/${riddle}`, { team, letters: code.trim().split(''), layer });
+        response.render(`riddles/${riddle}`, { team, letters: team.code.trim().split(''), layer });
       } else {
         response.redirect('/');
       }

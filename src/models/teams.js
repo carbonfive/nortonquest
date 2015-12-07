@@ -5,6 +5,7 @@ const _teams = [
     layarUserIds: {},
     route: [0,1,2],
     lettersUnlocked: 0,
+    code: "OCLMA"
   },
 ];
 
