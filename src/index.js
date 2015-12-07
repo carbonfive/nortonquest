@@ -14,8 +14,10 @@ function storeLayarUserId(request, response, next) {
 }
 
 const code = "COLMA";
-const domain = "rudyjahchan-c5-node.ngrok.io";
-const layer = "c5test2exampbqoi";
+const domain = process.env.NORTONQUEST_DOMAIN;
+const layer = process.env.NORTONQUEST_LAYER;
+
+console.log("ENV", {domain, layer});
 
 function authenticate(request, response, next) {
   teams.forLayarUser(request.session.layarUserId)
