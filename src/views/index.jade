@@ -1,0 +1,16 @@
+extends ./layout.jade
+
+block content
+  #letters
+    p The letters you have found so far:
+    p.letters
+      each letter, index in letters
+        if index < team.lettersUnlocked
+          span.letter= letter
+        else
+          span.letter _
+  #riddle
+    p The current riddle.
+    block riddle
+
+  a.action(href="layar://c5test2exampbqoi") Get Back
