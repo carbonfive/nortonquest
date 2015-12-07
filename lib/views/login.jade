@@ -1,0 +1,15 @@
+extends ./layout.jade
+
+block content
+  include ./riddles/chess.jade
+
+  p Know the answer? Answer with the room you're in.
+
+  form(action='/login',method='post')
+    label
+      | Room
+      input(type='text',name='room')
+    label
+      | Answer
+      input(type='text',name='move')
+    input(type='submit')
