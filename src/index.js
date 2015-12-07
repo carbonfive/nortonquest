@@ -191,7 +191,7 @@ export default function() {
           {
             id: "internalNorton",
             anchor: {
-              referenceImage: "meow"
+              referenceImage: "summoningCircle"
             },
             object: {
               url: "http://s3.amazonaws.com/rudyjahchan/Norton.png",
