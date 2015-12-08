@@ -1,14 +1,16 @@
-@import '~normalize.css/normalize.css';
-
-html {
-  font-size: 62.5%;
-}
-
 body {
-  font-size: 1.3rem;
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 
-.container {
-  margin: 0 auto;
-  padding: 1em;
+.riddle {
+  font-family: 'Cedarville Cursive', cursive;
+  padding: 1rem;
+  font-size: 1.5rem;
+  background-color: #ddd;
+}
+
+.letter {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
 }

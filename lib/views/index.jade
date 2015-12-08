@@ -10,8 +10,16 @@ block content
         else
           span.letter _
   #riddle
-    p The current riddle.
+    p The riddle:
     block riddle
+  p
+    | Click the "Launch Layar" link below to look for my spirits
+    | and tag the right one at the location matching the riddle.
+
+  P
+    | If you get stuck, you can always tap Our most royal visage in the top right corner 
+    | and pick "Layer Actions" to return to the dashboard, or summon Us within the circle again.
+
 
   - var layarLink = "layar://" + layer
-  a.action(href=layarLink) Get Back
+  a.btn.btn-default(href=layarLink) Launch Layar

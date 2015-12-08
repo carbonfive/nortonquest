@@ -226,7 +226,7 @@ export default function() {
         }
         response.render(`riddles/${riddle}`, { team, letters: team.code.trim().split(''), layer: geoLayer });
       } else {
-        response.redirect('/');
+        respone.redirect('/login');
       }
     })
     .get('/tag', authenticate, (request, response) => {
@@ -237,8 +237,10 @@ export default function() {
       if ((location.code == request.query.code) &&  (lettersUnlocked < 4)) {
         team.lettersUnlocked = lettersUnlocked + 1;
         response.render(`info/${location.code}`, { team });
-      } else {
+      } else if (lettersUnlocked >= 4) {
         response.redirect('/');
+      } else {
+        response.redirect('/sorry');
       }
     })
     .get('/welcome', (request, response) => {
