@@ -1,6 +1,10 @@
 extends ./layout.jade
 
 block content
+  if failed == 1
+    .alert.alert-danger
+      | Sorry, that's not quite right. Try again!
+
   include ./riddles/chess.jade
 
   p Know the answer? Submit the room your in and your solution!

@@ -81,7 +81,7 @@ export default function() {
     }))
     .use(storeLayarUserId)
     .get('/login', (request, response) => {
-      response.render('login');
+      response.render('login', { failed: request.query.failed });
     })
     .post('/login', (request, response) => {
       teams.addLayarUser(request.session.layarUserId, request.body.room, request.body.move)
@@ -98,7 +98,7 @@ export default function() {
           }
         })
         .catch((error) => {
-          response.redirect('/login');
+          response.redirect('/login?failed=1');
         });
     })
     .get('/logout', (request, response) => {
