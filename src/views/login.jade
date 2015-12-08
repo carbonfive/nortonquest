@@ -6,10 +6,10 @@ block content
   p Know the answer? Answer with the room you're in.
 
   form(action='/login',method='post')
-    label
-      | Room
-      input(type='text',name='room')
-    label
-      | Answer
-      input(type='text',name='move')
-    input(type='submit')
+    .form-group
+      label(for='room') Room
+      input.form-control(type='text',name='room')
+    .form-group
+      label(for='move') Answer
+      input.form-control(type='text',name='move')
+    button.btn.btn-default(type='submit') Survey

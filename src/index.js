@@ -241,6 +241,9 @@ export default function() {
         response.redirect('/');
       }
     })
+    .get('/welcome', (request, response) => {
+      response.render('welcome');
+    })
     .get('/sorry', authenticate, (request, response) => {
       response.render('sorry');
     });

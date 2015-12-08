@@ -5,7 +5,11 @@ html
     meta(http-equiv="X-UA-Compatible",content="IE=edge")
     meta(name="viewport",content="width=device-width, initial-scale=1")
     title Emperor Norton
-    link(rel="stylesheet",media="all",href="/stylesheets/application.css")
+    link(rel="stylesheet",href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css",integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7",crossorigin="anonymous")
   body
     .container
-      block content
+      .media
+        .media-left
+          img.media-object(src="https://s3.amazonaws.com/rudyjahchan/EmperorNortonProfileSmall.png", width=64, height=64)
+        .media-body
+          block content
