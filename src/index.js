@@ -33,23 +33,23 @@ function authenticate(request, response, next) {
 const _locations = [
   {
     geopoint: { latitude: 37.795264, longitude: -122.402122 },
-    code: 'bl'
+    code: 'bl',
+    name: 'Bummer and Lazarus',
   },
   {
     geopoint: { latitude: 37.795113, longitude: -122.405809 },
-    code: 'rls'
+    code: 'rls',
+    name: 'Robert Louis Stevenson',
   },
   {
     geopoint: { latitude: 37.794895, longitude: -122.401768 },
-    code: 'ship'
+    code: 'ship',
+    name: 'Niantic',
   },
   {
     geopoint: { latitude: 37.793366, longitude: -122.402724 },
-    code: 'wf'
-  },
-  {
-    geopoint: { latitude: 37.793366, longitude: -122.402724 },
-    code: 'final'
+    code: 'wf',
+    name: 'Wells Fargo',
   },
 ];
 
@@ -62,10 +62,8 @@ function nextLocation(team) {
     const routeIndex = team.lettersUnlocked;
     const locationIndex = team.route[routeIndex];
     return _locations[locationIndex];
-  } else if(team.lettersUnlocked == 3) {
+  } else if(team.lettersUnlocked >= 3) {
     return _locations[3];
-  } else if(team.lettersUnlocked > 3) {
-    return _locations[4];
   }
 }
 
@@ -108,7 +106,7 @@ export default function() {
         .then(() => response.redirect('/login'))
         .catch(() => response.redirect('/login'));
     })
-    .get('/geo', (request, response) => {
+    .get('/geo', function(request, response) {
       const layarUserId = request.query.userId;
       const json = {
         refreshInterval: 11,
@@ -144,7 +142,7 @@ export default function() {
                   }
                 },
                 text: {
-                  title: "Emperor Norton"
+                  title: `Emperor Norton - ${location.name}`
                 },
                 object: {
                   contentType: "image/png",
@@ -178,7 +176,7 @@ export default function() {
           response.json(json);
         });
     })
-    .get('/vision', (request, response) => {
+    .get('/vision', function(request, response) {
       const layarUserId = request.query.userId;
       response.json({
         fullRefresh: true,
@@ -207,7 +205,7 @@ export default function() {
             showBiwOnClick: false,
             actions: [ {
               label: "Speak",
-              uri: `http:\/\/${domain}?layarUserId=${layarUserId}`,
+              uri: `http:\/\/${domain}/welcome?layarUserId=${layarUserId}`,
               contentType: "text\/html",
               method: "GET",
             }]
