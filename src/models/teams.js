@@ -1,11 +1,27 @@
 const _teams = [
   {
-    name: 'foo',
-    move: 'kb8',
+    name: 'aluminum',
+    move: 'nf6qf8',
     layarUserIds: {},
     route: [0,1,2],
     lettersUnlocked: 0,
-    code: "OCLMA"
+    code: "OCMLA"
+  },
+  {
+    name: 'argon',
+    move: 'qb3qd3',
+    layarUserIds: {},
+    route: [0,2,1],
+    lettersUnlocked: 0,
+    code: "CLMOA"
+  },
+  {
+    name: 'helium',
+    move: 'qf6bf6',
+    layarUserIds: {},
+    route: [1,0,2],
+    lettersUnlocked: 0,
+    code: "MCLOA"
   },
 ];
 
