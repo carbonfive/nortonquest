@@ -32,23 +32,23 @@ function authenticate(request, response, next) {
 
 const _locations = [
   {
-    geopoint: { latitude: 34.0422911, longitude: -118.44602250000003 },
+    geopoint: { latitude: 37.795264, longitude: -122.402122 },
     code: 'bl'
   },
   {
-    geopoint: { latitude: 34.0422911, longitude: -118.44602250000003 },
+    geopoint: { latitude: 37.795113, longitude: -122.405809 },
     code: 'rls'
   },
   {
-    geopoint: { latitude: 34.0422911, longitude: -118.44602250000003 },
+    geopoint: { latitude: 37.794895, longitude: -122.401768 },
     code: 'ship'
   },
   {
-    geopoint: { latitude: 34.0422911, longitude: -118.44602250000003 },
+    geopoint: { latitude: 37.793366, longitude: -122.402724 },
     code: 'wf'
   },
   {
-    geopoint: { latitude: 34.0422911, longitude: -118.44602250000003 },
+    geopoint: { latitude: 37.793366, longitude: -122.402724 },
     code: 'final'
   },
 ];
@@ -234,10 +234,10 @@ export default function() {
       const lettersUnlocked = team.lettersUnlocked;
       const location = nextLocation(request.team);
       const code = request.query.code;
-      if ((location.code == request.query.code) &&  (lettersUnlocked < 4)) {
+      if ((location.code == code) &&  (lettersUnlocked < 4)) {
         team.lettersUnlocked = lettersUnlocked + 1;
         response.render(`info/${location.code}`, { team });
-      } else if (lettersUnlocked >= 4) {
+      } else if ((lettersUnlocked >= 4) && (code == 'final' || code == 'wf')) {
         response.redirect('/');
       } else {
         response.redirect('/sorry');
