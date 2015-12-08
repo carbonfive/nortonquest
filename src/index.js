@@ -191,7 +191,7 @@ export default function() {
             object: {
               url: "http://s3.amazonaws.com/rudyjahchan/Norton.png",
               contentType: "image/png",
-              size: 0.25
+              size: 0.5
             },
             transform: {
               rotate: {

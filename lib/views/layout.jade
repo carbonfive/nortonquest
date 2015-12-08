@@ -10,6 +10,9 @@ html
     link(rel="stylesheet",href="/stylesheets/application.css")
   body
     .container
+      if team
+        p(style="text-align: right")
+          a(href='/logout') Logout
       .media
         .media-left
           img.media-object(src="https://s3.amazonaws.com/rudyjahchan/EmperorNortonProfileSmall.png", width=32, height=32)
