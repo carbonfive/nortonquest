@@ -125,15 +125,10 @@ export default function() {
         }],
       };
       teams.forLayarUser(layarUserId)
-        .then((team) => {
-          const location = nextLocation(team);
-          const userLocation = { latitude: request.query.lat, longitude: request.query.lon };
-          const distance = Math.abs(geolib.getDistance(userLocation, location.geopoint));
-
-          let hotspots = [];
-          if(distance < 25) {
-            hotspots = [
-              {
+        .then(function(team) {
+          json.hotspots = locations()
+            .map(function(location) {
+              return {
                 id: `${location.code}OutsideNorton`,
                 anchor: {
                   geolocation: {
@@ -148,7 +143,7 @@ export default function() {
                   contentType: "image/png",
                   url: "http://s3.amazonaws.com/rudyjahchan/Norton.png",
                   reducedURL: "http://s3.amazonaws.com/rudyjahchan/Norton.png",
-                  size: 2.0
+                  size: 3.5
                 },
                 transform: {
                   rotate: {
@@ -158,6 +153,7 @@ export default function() {
                   }
                 },
                 showBiwOnClick: false,
+                showSmallBiw: false,
                 actions: [ {
                   label: "Tag",
                   uri: `http:\/\/${domain}\/tag?code=${location.code}&layarUserId=${layarUserId}`,
@@ -165,14 +161,11 @@ export default function() {
                   method: "GET",
                 }]
               }
-            ];
-          };
-
-          json.hotspots = hotspots;
+            });
 
           response.json(json);
         })
-        .catch((error) => {
+        .catch(function(error) {
           response.json(json);
         });
     })
