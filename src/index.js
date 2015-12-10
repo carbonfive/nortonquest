@@ -143,7 +143,7 @@ export default function() {
                   contentType: "image/png",
                   url: "http://s3.amazonaws.com/rudyjahchan/Norton.png",
                   reducedURL: "http://s3.amazonaws.com/rudyjahchan/Norton.png",
-                  size: 3.0
+                  size: 3.5
                 },
                 transform: {
                   rotate: {
