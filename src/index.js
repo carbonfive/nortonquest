@@ -51,6 +51,31 @@ const _locations = [
     code: 'wf',
     name: 'Wells Fargo',
   },
+  {
+    geopoint: { latitude: 37.787993, longitude: -122.401941 },
+    code: 'ph',
+    name: 'Palace Hotel',
+  },
+  {
+    geopoint: { latitude: 37.7878949, longitude: -122.4034908 },
+    code: 'lf',
+    name: "Lotta's Fountain",
+  },
+  {
+    geopoint: { latitude: 37.794656, longitude: -122.403632 },
+    code: 'pe',
+    name: 'Pony Express',
+  },
+  {
+    geopoint: { latitude: 37.796350, longitude: -122.402830 },
+    code: 'hb',
+    name: 'Hotaling Building',
+  },
+  {
+    geopoint: { latitude: 37.792594, longitude: -122.405762 },
+    code: 'osm',
+    name: "Old Saint Mary's Cathedral",
+  },
 ];
 
 function locations() {
