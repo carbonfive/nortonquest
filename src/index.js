@@ -83,8 +83,10 @@ export default function() {
     .get('/login', (request, response) => {
       response.render('login', { failed: request.query.failed });
     })
-    .post('/login', (request, response) => {
-      teams.addLayarUser(request.session.layarUserId, request.body.room, request.body.move)
+    .post('/login', function(request, response) {
+      const layarUserId = request.session.layarUserId;
+      const { room, whiteMove0, blackMove, whiteMove1 } = request.body;
+      teams.addLayarUser(layarUserId, { room, whiteMove0, blackMove, whiteMove1})
         .then((team) => {
           const session = request.session;
           const authenticationURL = session.authenticationURL;

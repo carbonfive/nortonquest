@@ -1,7 +1,9 @@
 const _teams = [
   {
     name: 'aluminum',
-    move: 'nf6qf8',
+    whiteMove0: 'nf6',
+    blackMove: 'qf6',
+    whiteMove1: 'qf8',
     layarUserIds: {},
     route: [0,1,2],
     lettersUnlocked: 0,
@@ -9,7 +11,9 @@ const _teams = [
   },
   {
     name: 'argon',
-    move: 'qb3qd3',
+    whiteMove0: 'qb3',
+    blackMove: 'kd4',
+    whiteMove1: 'qd3',
     layarUserIds: {},
     route: [0,2,1],
     lettersUnlocked: 0,
@@ -17,7 +21,9 @@ const _teams = [
   },
   {
     name: 'helium',
-    move: 'qf6bf6',
+    whiteMove0: 'qf6',
+    blackMove: 'nf6',
+    whiteMove1: 'be7',
     layarUserIds: {},
     route: [1,0,2],
     lettersUnlocked: 0,
@@ -25,7 +31,9 @@ const _teams = [
   },
   {
     name: 'iron',
-    move: 'qg8nf7',
+    whiteMove0: 'qg8',
+    blackMove: 'rg8',
+    whiteMove1: 'nf7',
     layarUserIds: {},
     route: [1,2,0],
     lettersUnlocked: 0,
@@ -33,7 +41,9 @@ const _teams = [
   },
   {
     name: 'lithium',
-    move: 'nh5nf6',
+    whiteMove0: 'nh5',
+    blackMove: 'ke8',
+    whiteMove1: 'nf6',
     layarUserIds: {},
     route: [2,1,0],
     lettersUnlocked: 0,
@@ -41,7 +51,9 @@ const _teams = [
   },
   {
     name: 'oxygen',
-    move: 'qf7re8',
+    whiteMove0: 'qf7',
+    blackMove: 'rf7',
+    whiteMove1: 're8',
     layarUserIds: {},
     route: [2,0,1],
     lettersUnlocked: 0,
@@ -49,7 +61,9 @@ const _teams = [
   },
   {
     name: 'titanium',
-    move: 'qf8re8',
+    whiteMove0: 'qf8',
+    blackMove: 'nf8',
+    whiteMove1: 're8',
     layarUserIds: {},
     route: [1,0,2],
     lettersUnlocked: 0,
@@ -57,7 +71,9 @@ const _teams = [
   },
   {
     name: 'zinc',
-    move: 'nf7be7',
+    whiteMove0: 'nf7',
+    blackMove: 'bf7',
+    whiteMove1: 'be7',
     layarUserIds: {},
     route: [2,0,1],
     lettersUnlocked: 0,
@@ -69,13 +85,15 @@ function all() {
   return _teams;
 }
 
-function addLayarUser(layarUserId, _room, _move) {
-  const room = (_room || "").trim().toLowerCase();
-  const move = (_move || "").trim().toLowerCase();
+function addLayarUser(layarUserId, { room, whiteMove0, blackMove, whiteMove1}) {
+  const safeRoom = (room || "").trim().toLowerCase();
+  const safeWhiteMove0 = (whiteMove0 || "").trim().toLowerCase();
+  const safeBlackMove = (blackMove || "").trim().toLowerCase();
+  const safeWhiteMove1 = (whiteMove1 || "").trim().toLowerCase();
 
-  return new Promise((resolve, reject) => {
+  return new Promise(function(resolve, reject) {
     const validTeams = all().filter((team) => {
-      return (team.name == room) && (team.move == move);
+      return (team.name == safeRoom) && (team.whiteMove0 == safeWhiteMove0) && (team.blackMove == safeBlackMove) && (team.whiteMove1 == safeWhiteMove1);
     });
 
     if (validTeams.length > 0) {
